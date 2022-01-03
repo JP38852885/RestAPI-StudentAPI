@@ -1,0 +1,8 @@
+app:
+  name: Tutorial - RESTAPI Tutorial
+server:
+  port: 8091
+
+
+spring:
+  profile-testing-key: interface - no profiles set  .
