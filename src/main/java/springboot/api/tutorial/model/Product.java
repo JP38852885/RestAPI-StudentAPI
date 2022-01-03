@@ -1,6 +1,9 @@
 package springboot.api.tutorial.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
+
+import com.sun.istack.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -16,16 +19,25 @@ import java.util.Date;
 public class Product {
 
 	@Id
+	@NotNull
+	@Size(min=1, message="Product Id should have at least 1 characters")
+	@Size(max=5, message="Product Id should not more than 5 characters")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	
+	@NotNull
+	@Size(min=2, message="Product Name should have at least 2 characters")
+	@Size(max=10, message="Product Name should not more than 10 characters")
 	@Column(name = "title")
 	private String title;
 
+	@Size(min=5, message="description should have atleast 5 characters")
+	@Size(max=15, message="description should not more than 15 characters")
 	@Column(name = "description")
 	private String description;
 
+	@NotNull
+	@Size(min=1, message="Price should have atleast 1 characters")
 	@Column(name = "price")
 	private float price;
 	
@@ -38,7 +50,7 @@ public class Product {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date updated_at;
-	
+
 	public Product() {
 		
     }
